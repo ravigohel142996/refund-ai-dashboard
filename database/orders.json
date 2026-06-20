@@ -1,0 +1,290 @@
+[
+  {
+    "order_id": "ORD001",
+    "customer_id": "C001",
+    "product_name": "Sony WH-1000XM5 Headphones",
+    "order_amount": 349.99,
+    "delivery_date": "2026-06-18",
+    "delivered": true,
+    "product_condition": "new"
+  },
+  {
+    "order_id": "ORD002",
+    "customer_id": "C002",
+    "product_name": "Apple iPad Air 5th Gen",
+    "order_amount": 749.00,
+    "delivery_date": "2026-06-14",
+    "delivered": true,
+    "product_condition": "used"
+  },
+  {
+    "order_id": "ORD003",
+    "customer_id": "C003",
+    "product_name": "Samsung 4K QLED TV 55\"",
+    "order_amount": 1199.99,
+    "delivery_date": "2026-06-19",
+    "delivered": true,
+    "product_condition": "damaged"
+  },
+  {
+    "order_id": "ORD004",
+    "customer_id": "C004",
+    "product_name": "Nike Air Max 270",
+    "order_amount": 129.99,
+    "delivery_date": "2026-06-10",
+    "delivered": true,
+    "product_condition": "new"
+  },
+  {
+    "order_id": "ORD005",
+    "customer_id": "C005",
+    "product_name": "Instant Pot Duo 7-in-1",
+    "order_amount": 89.99,
+    "delivery_date": "2026-06-20",
+    "delivered": false,
+    "product_condition": "new"
+  },
+  {
+    "order_id": "ORD006",
+    "customer_id": "C006",
+    "product_name": "Levi's 501 Original Jeans",
+    "order_amount": 69.99,
+    "delivery_date": "2026-06-17",
+    "delivered": true,
+    "product_condition": "new"
+  },
+  {
+    "order_id": "ORD007",
+    "customer_id": "C007",
+    "product_name": "Dyson V15 Detect Vacuum",
+    "order_amount": 699.99,
+    "delivery_date": "2026-06-13",
+    "delivered": true,
+    "product_condition": "damaged"
+  },
+  {
+    "order_id": "ORD008",
+    "customer_id": "C008",
+    "product_name": "Kindle Paperwhite 11th Gen",
+    "order_amount": 139.99,
+    "delivery_date": "2026-06-09",
+    "delivered": true,
+    "product_condition": "used"
+  },
+  {
+    "order_id": "ORD009",
+    "customer_id": "C009",
+    "product_name": "Bose SoundLink Revolve+",
+    "order_amount": 299.00,
+    "delivery_date": "2026-06-18",
+    "delivered": true,
+    "product_condition": "new"
+  },
+  {
+    "order_id": "ORD010",
+    "customer_id": "C010",
+    "product_name": "LEGO Star Wars Millennium Falcon",
+    "order_amount": 849.99,
+    "delivery_date": "2026-06-21",
+    "delivered": false,
+    "product_condition": "new"
+  },
+  {
+    "order_id": "ORD011",
+    "customer_id": "C011",
+    "product_name": "Cuisinart 14-Cup Coffee Maker",
+    "order_amount": 149.99,
+    "delivery_date": "2026-06-16",
+    "delivered": true,
+    "product_condition": "new"
+  },
+  {
+    "order_id": "ORD012",
+    "customer_id": "C012",
+    "product_name": "GoPro HERO12 Black",
+    "order_amount": 399.99,
+    "delivery_date": "2026-06-11",
+    "delivered": true,
+    "product_condition": "new"
+  },
+  {
+    "order_id": "ORD013",
+    "customer_id": "C013",
+    "product_name": "Fitbit Charge 6",
+    "order_amount": 159.95,
+    "delivery_date": "2026-06-17",
+    "delivered": true,
+    "product_condition": "damaged"
+  },
+  {
+    "order_id": "ORD014",
+    "customer_id": "C014",
+    "product_name": "Anker PowerCore 26800 mAh",
+    "order_amount": 59.99,
+    "delivery_date": "2026-06-08",
+    "delivered": true,
+    "product_condition": "new"
+  },
+  {
+    "order_id": "ORD015",
+    "customer_id": "C015",
+    "product_name": "Roomba i7+ Robot Vacuum",
+    "order_amount": 599.99,
+    "delivery_date": "2026-06-19",
+    "delivered": true,
+    "product_condition": "new"
+  },
+  {
+    "order_id": "ORD016",
+    "customer_id": "C001",
+    "product_name": "Logitech MX Master 3 Mouse",
+    "order_amount": 99.99,
+    "delivery_date": "2026-06-15",
+    "delivered": true,
+    "product_condition": "new"
+  },
+  {
+    "order_id": "ORD017",
+    "customer_id": "C002",
+    "product_name": "Philips Hue Starter Kit",
+    "order_amount": 179.99,
+    "delivery_date": "2026-06-20",
+    "delivered": false,
+    "product_condition": "new"
+  },
+  {
+    "order_id": "ORD018",
+    "customer_id": "C003",
+    "product_name": "KitchenAid Stand Mixer 5qt",
+    "order_amount": 449.99,
+    "delivery_date": "2026-06-12",
+    "delivered": true,
+    "product_condition": "used"
+  },
+  {
+    "order_id": "ORD019",
+    "customer_id": "C004",
+    "product_name": "Nintendo Switch OLED",
+    "order_amount": 349.99,
+    "delivery_date": "2026-06-18",
+    "delivered": true,
+    "product_condition": "new"
+  },
+  {
+    "order_id": "ORD020",
+    "customer_id": "C005",
+    "product_name": "Ray-Ban Aviator Classic",
+    "order_amount": 161.00,
+    "delivery_date": "2026-06-07",
+    "delivered": true,
+    "product_condition": "new"
+  },
+  {
+    "order_id": "ORD021",
+    "customer_id": "C006",
+    "product_name": "Weber Spirit II E-310 Grill",
+    "order_amount": 549.00,
+    "delivery_date": "2026-06-22",
+    "delivered": false,
+    "product_condition": "new"
+  },
+  {
+    "order_id": "ORD022",
+    "customer_id": "C007",
+    "product_name": "Canon EOS R50 Camera",
+    "order_amount": 879.99,
+    "delivery_date": "2026-06-16",
+    "delivered": true,
+    "product_condition": "new"
+  },
+  {
+    "order_id": "ORD023",
+    "customer_id": "C008",
+    "product_name": "DEWALT 20V MAX Drill Set",
+    "order_amount": 199.00,
+    "delivery_date": "2026-06-13",
+    "delivered": true,
+    "product_condition": "damaged"
+  },
+  {
+    "order_id": "ORD024",
+    "customer_id": "C009",
+    "product_name": "Patagonia Down Sweater Jacket",
+    "order_amount": 279.00,
+    "delivery_date": "2026-06-19",
+    "delivered": true,
+    "product_condition": "new"
+  },
+  {
+    "order_id": "ORD025",
+    "customer_id": "C010",
+    "product_name": "Theragun Prime Massager",
+    "order_amount": 299.00,
+    "delivery_date": "2026-06-10",
+    "delivered": true,
+    "product_condition": "new"
+  },
+  {
+    "order_id": "ORD026",
+    "customer_id": "C011",
+    "product_name": "Ember Temperature Control Mug",
+    "order_amount": 149.95,
+    "delivery_date": "2026-06-14",
+    "delivered": true,
+    "product_condition": "used"
+  },
+  {
+    "order_id": "ORD027",
+    "customer_id": "C012",
+    "product_name": "Microsoft Surface Pro 9",
+    "order_amount": 1299.99,
+    "delivery_date": "2026-06-18",
+    "delivered": true,
+    "product_condition": "new"
+  },
+  {
+    "order_id": "ORD028",
+    "customer_id": "C013",
+    "product_name": "Shark Air Purifier MAX",
+    "order_amount": 329.99,
+    "delivery_date": "2026-06-20",
+    "delivered": false,
+    "product_condition": "new"
+  },
+  {
+    "order_id": "ORD029",
+    "customer_id": "C014",
+    "product_name": "Yeti Rambler 30 oz Tumbler",
+    "order_amount": 38.00,
+    "delivery_date": "2026-06-09",
+    "delivered": true,
+    "product_condition": "new"
+  },
+  {
+    "order_id": "ORD030",
+    "customer_id": "C015",
+    "product_name": "Peloton Bike+ (Refurbished)",
+    "order_amount": 1495.00,
+    "delivery_date": "2026-06-17",
+    "delivered": true,
+    "product_condition": "used"
+  },
+  {
+    "order_id": "ORD031",
+    "customer_id": "C001",
+    "product_name": "Apple AirPods Pro 2nd Gen",
+    "order_amount": 249.00,
+    "delivery_date": "2026-06-19",
+    "delivered": true,
+    "product_condition": "new"
+  },
+  {
+    "order_id": "ORD032",
+    "customer_id": "C003",
+    "product_name": "Breville Espresso Machine",
+    "order_amount": 699.95,
+    "delivery_date": "2026-06-11",
+    "delivered": true,
+    "product_condition": "damaged"
+  }
+]
