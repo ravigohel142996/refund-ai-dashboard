@@ -16,7 +16,7 @@ from typing import Any, Optional
 from langgraph.graph import StateGraph, END
 from typing_extensions import TypedDict
 
-from agent_tools import (
+from backend.agent_tools import (
     customer_lookup_tool,
     order_lookup_tool,
     policy_lookup_tool,
@@ -205,7 +205,7 @@ def generate_summary(state: AgentState) -> dict[str, Any]:
     """
     import logging
     from tenacity import retry, stop_after_attempt, wait_exponential
-    from config import get_settings
+    from backend.config import get_settings
 
     logger = logging.getLogger(__name__)
     settings = get_settings()
