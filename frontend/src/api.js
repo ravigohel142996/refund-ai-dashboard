@@ -1,5 +1,9 @@
 // API client for the backend
-export const BASE_URL = import.meta.env.VITE_API_URL || 'https://refund-ai-dashboard.onrender.com';
+export const BASE_URL = import.meta.env.VITE_API_URL;
+
+if (!BASE_URL) {
+  throw new Error('VITE_API_URL is not configured');
+}
 
 export function getWebSocketUrl(path) {
   const url = new URL(BASE_URL);
