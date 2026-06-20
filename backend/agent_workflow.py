@@ -203,6 +203,13 @@ def generate_summary(state: AgentState) -> dict[str, Any]:
     It only writes to 'gemini_explanation' (cosmetic) and logs.
     The refund outcome is fully determined by validate_refund above.
     """
+    import logging
+    from tenacity import retry, stop_after_attempt, wait_exponential
+    from config import get_settings
+
+    logger = logging.getLogger(__name__)
+    settings = get_settings()
+
     tool_logs = list(state.get("tool_logs", []))
     reasoning_logs = list(state.get("agent_reasoning_logs", []))
 
@@ -212,23 +219,26 @@ def generate_summary(state: AgentState) -> dict[str, Any]:
     order = state.get("order")
     gemini_explanation = None
 
-    # Try Gemini summary — purely cosmetic, never changes decision
-    api_key = os.environ.get("GEMINI_API_KEY", "")
+    api_key = settings.GEMINI_API_KEY
+
+    @retry(stop=stop_after_attempt(3), wait=wait_exponential(multiplier=1, min=2, max=10))
+    def call_gemini(prompt: str) -> str:
+        from langchain_google_genai import ChatGoogleGenerativeAI
+        llm = ChatGoogleGenerativeAI(
+            model="gemini-2.0-flash",
+            google_api_key=api_key,
+        )
+        response = llm.invoke(prompt)
+        return response.content
+
     if api_key and api_key != "YOUR_API_KEY_HERE":
         try:
-            from langchain_google_genai import ChatGoogleGenerativeAI
-
-            llm = ChatGoogleGenerativeAI(
-                model="gemini-2.0-flash",
-                google_api_key=api_key,
-            )
-
             prompt = _build_summary_prompt(
                 decision, reasoning, customer, order,
                 state.get("message", ""),
             )
-            response = llm.invoke(prompt)
-            gemini_explanation = response.content
+            logger.info("Calling Gemini for summary generation...")
+            gemini_explanation = call_gemini(prompt)
             tool_logs.append(
                 f"Gemini explanation generated: {gemini_explanation[:120]}..."
             )
@@ -236,7 +246,9 @@ def generate_summary(state: AgentState) -> dict[str, Any]:
                 "generate_summary", "success",
                 "Gemini natural-language explanation generated.",
             ))
+            logger.info("Gemini summary successfully generated.")
         except Exception as exc:
+            logger.error(f"Gemini call failed after retries: {exc}")
             tool_logs.append(
                 f"Gemini summary skipped (error: {exc}). Using fallback."
             )
@@ -245,13 +257,13 @@ def generate_summary(state: AgentState) -> dict[str, Any]:
                 f"Gemini unavailable ({exc}); structured fallback used.",
             ))
     else:
+        logger.warning("No valid GEMINI_API_KEY provided. Using fallback.")
         tool_logs.append("Decision generated (no LLM — structured fallback).")
         reasoning_logs.append(_make_reasoning_log(
             "generate_summary", "fallback",
             "No GEMINI_API_KEY configured; structured fallback used.",
         ))
 
-    # NEVER return decision or reasoning — those are owned by validate_refund
     return {
         "tool_logs": tool_logs,
         "agent_reasoning_logs": reasoning_logs,
