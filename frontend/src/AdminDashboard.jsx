@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { getWebSocketUrl } from './api';
 
 /* ------------------------------------------------------------------ */
 /* Helpers                                                              */
@@ -136,7 +137,7 @@ export default function AdminDashboard() {
     let reconnectTimer;
 
     const connect = () => {
-      ws = new WebSocket('ws://localhost:8000/ws/admin');
+      ws = new WebSocket(getWebSocketUrl('/ws/admin'));
 
       ws.onopen = () => {
         setIsConnected(true);

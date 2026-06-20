@@ -1,5 +1,12 @@
 // API client for the backend
-const BASE_URL = 'http://localhost:8000';
+export const BASE_URL = import.meta.env.VITE_API_URL || 'https://refund-ai-dashboard.onrender.com';
+
+export function getWebSocketUrl(path) {
+  const url = new URL(BASE_URL);
+  url.protocol = url.protocol === 'https:' ? 'wss:' : 'ws:';
+  url.pathname = path;
+  return url.toString();
+}
 
 export async function checkHealth() {
   const res = await fetch(`${BASE_URL}/health`);
