@@ -11,13 +11,7 @@ Validates:
 """
 
 import unittest
-import os
-import sys
-
-# Ensure the backend directory is on the path
-sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-
-from agent_workflow import run_agent
+from backend.agent_workflow import run_agent
 
 
 class TestAgentWorkflow(unittest.TestCase):
