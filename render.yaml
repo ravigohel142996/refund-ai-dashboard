@@ -8,7 +8,7 @@ services:
     startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
     envVars:
       - key: GEMINI_API_KEY
-        sync: false          # Set manually in Render dashboard
+        sync: false          # ← Set this manually in Render dashboard
       - key: ENVIRONMENT
         value: production
       - key: LOG_LEVEL
@@ -22,11 +22,18 @@ services:
     rootDir: frontend
     buildCommand: npm install && npm run build
     staticPublishPath: dist
+    headers:
+      - path: /*
+        name: Cache-Control
+        value: no-cache
     routes:
-      # SPA fallback — send all paths to index.html (fixes /admin 404 on Render)
+      # CRITICAL: SPA fallback — all paths (including /admin) serve index.html
+      # This prevents "Not Found" when navigating directly to /admin
       - type: rewrite
         source: /*
         destination: /index.html
     envVars:
+      # ← IMPORTANT: Set this to your backend service URL in Render dashboard
+      # Example: https://refund-ai-backend.onrender.com
       - key: VITE_API_URL
-        sync: false          # Set to your backend Render URL, e.g. https://refund-ai-backend.onrender.com
+        sync: false

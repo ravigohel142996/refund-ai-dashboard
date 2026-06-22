@@ -230,9 +230,13 @@ export default function AdminDashboard() {
     let reconnectTimer;
 
     const connect = () => {
-      const backendUrl = import.meta.env.VITE_API_URL || 'http://localhost:8000';
-      const cleanBackendUrl = backendUrl.replace(/\/$/, '');
-      const wsUrl = cleanBackendUrl.replace(/^http/, 'ws') + '/ws/admin';
+      // In production on Render, VITE_API_URL must be set to the backend service URL.
+      // Falls back to localhost for local dev.
+      const backendUrl = (import.meta.env.VITE_API_URL || 'http://localhost:8000').replace(/\/$/, '');
+      const wsProtocol = window.location.protocol === 'https:' ? 'wss' : 'ws';
+      const wsUrl = backendUrl
+        .replace(/^https?/, wsProtocol)
+        .replace(/^wss?\/\/localhost/, `${wsProtocol}://localhost`) + '/ws/admin';
       ws = new WebSocket(wsUrl);
 
       ws.onopen = () => setIsConnected(true);
