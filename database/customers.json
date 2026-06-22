@@ -1,0 +1,92 @@
+[
+  {
+    "customer_id": "C001",
+    "name": "Alice Johnson",
+    "email": "alice.johnson@email.com",
+    "membership_level": "gold"
+  },
+  {
+    "customer_id": "C002",
+    "name": "Bob Martinez",
+    "email": "bob.martinez@email.com",
+    "membership_level": "silver"
+  },
+  {
+    "customer_id": "C003",
+    "name": "Carol White",
+    "email": "carol.white@email.com",
+    "membership_level": "platinum"
+  },
+  {
+    "customer_id": "C004",
+    "name": "David Kim",
+    "email": "david.kim@email.com",
+    "membership_level": "bronze"
+  },
+  {
+    "customer_id": "C005",
+    "name": "Emma Thompson",
+    "email": "emma.thompson@email.com",
+    "membership_level": "gold"
+  },
+  {
+    "customer_id": "C006",
+    "name": "Frank Garcia",
+    "email": "frank.garcia@email.com",
+    "membership_level": "silver"
+  },
+  {
+    "customer_id": "C007",
+    "name": "Grace Lee",
+    "email": "grace.lee@email.com",
+    "membership_level": "platinum"
+  },
+  {
+    "customer_id": "C008",
+    "name": "Henry Wilson",
+    "email": "henry.wilson@email.com",
+    "membership_level": "bronze"
+  },
+  {
+    "customer_id": "C009",
+    "name": "Isabella Brown",
+    "email": "isabella.brown@email.com",
+    "membership_level": "gold"
+  },
+  {
+    "customer_id": "C010",
+    "name": "James Taylor",
+    "email": "james.taylor@email.com",
+    "membership_level": "silver"
+  },
+  {
+    "customer_id": "C011",
+    "name": "Karen Anderson",
+    "email": "karen.anderson@email.com",
+    "membership_level": "bronze"
+  },
+  {
+    "customer_id": "C012",
+    "name": "Liam Jackson",
+    "email": "liam.jackson@email.com",
+    "membership_level": "platinum"
+  },
+  {
+    "customer_id": "C013",
+    "name": "Mia Harris",
+    "email": "mia.harris@email.com",
+    "membership_level": "gold"
+  },
+  {
+    "customer_id": "C014",
+    "name": "Noah Clark",
+    "email": "noah.clark@email.com",
+    "membership_level": "silver"
+  },
+  {
+    "customer_id": "C015",
+    "name": "Olivia Lewis",
+    "email": "olivia.lewis@email.com",
+    "membership_level": "bronze"
+  }
+]

@@ -1,0 +1,67 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+dist/
+build/
+.eggs/
+*.egg
+pip-selfcheck.json
+
+# Virtual environments
+venv/
+env/
+.venv/
+ENV/
+
+# Environment variables
+.env
+!.env.example
+
+# Node / Frontend
+frontend/node_modules/
+frontend/dist/
+frontend/.env
+frontend/.env.local
+frontend/.env.production
+
+# Root node_modules
+node_modules/
+
+# Vite
+frontend/.vite/
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Test artifacts
+.pytest_cache/
+htmlcov/
+.coverage
+
+# Misc binaries in root
+node.exe
+corepack
+corepack.cmd
+nodevars.bat
+npm
+npm.cmd
+npm.ps1
+npx
+npx.cmd
+npx.ps1
