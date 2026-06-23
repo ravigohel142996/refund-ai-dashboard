@@ -275,7 +275,8 @@ export default function AdminDashboard() {
     const matchFilter = filter === 'all' || r.decision?.toLowerCase() === filter;
     const matchSearch = !search ||
       r.customer_id?.toLowerCase().includes(search.toLowerCase()) ||
-      r.order_id?.toLowerCase().includes(search.toLowerCase());
+      r.order_id?.toLowerCase().includes(search.toLowerCase()) ||
+      r.decision?.toLowerCase().includes(search.toLowerCase());
     return matchFilter && matchSearch;
   });
 

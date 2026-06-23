@@ -66,11 +66,17 @@ async def global_exception_handler(request: Request, exc: Exception):
 class ConnectionManager:
     def __init__(self):
         self.active_connections: List[WebSocket] = []
+        self.history: List[str] = []
 
     async def connect(self, websocket: WebSocket):
         await websocket.accept()
         self.active_connections.append(websocket)
         logger.info(f"WebSocket connected. Total active: {len(self.active_connections)}")
+        for message in self.history:
+            try:
+                await websocket.send_text(message)
+            except Exception as e:
+                logger.error(f"Failed to send history message: {e}")
 
     def disconnect(self, websocket: WebSocket):
         if websocket in self.active_connections:
@@ -78,6 +84,7 @@ class ConnectionManager:
             logger.info(f"WebSocket disconnected. Total active: {len(self.active_connections)}")
 
     async def broadcast(self, message: str):
+        self.history.append(message)
         for connection in self.active_connections:
             try:
                 await connection.send_text(message)
