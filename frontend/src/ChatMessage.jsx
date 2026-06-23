@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { speak, stopSpeaking, isSpeechSynthesisSupported } from './useSpeech';
 
 /**
  * Single chat bubble — user or assistant.
@@ -49,6 +50,11 @@ export default function ChatMessage({ message }) {
           {message.content}
         </div>
 
+        {/* Speak button — only on assistant messages */}
+        {!isUser && !isError && isSpeechSynthesisSupported() && (
+          <SpeakButton text={message.content} />
+        )}
+
         {/* Decision badge */}
         {message.decision && (
           <DecisionBadge decision={message.decision} reasoning={message.reasoning} />
@@ -66,6 +72,59 @@ export default function ChatMessage({ message }) {
 }
 
 /* ------------------------------------------------------------------ */
+/* Speak button (TTS)                                                   */
+/* ------------------------------------------------------------------ */
+function SpeakButton({ text }) {
+  const [speaking, setSpeaking] = useState(false);
+
+  function toggle() {
+    if (speaking) {
+      stopSpeaking();
+      setSpeaking(false);
+    } else {
+      setSpeaking(true);
+      speak(text, {
+        onEnd:   () => setSpeaking(false),
+        onError: () => setSpeaking(false),
+      });
+    }
+  }
+
+  return (
+    <button
+      id="tts-speak-btn"
+      onClick={toggle}
+      title={speaking ? 'Stop speaking' : 'Read aloud'}
+      className={`flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-medium border transition-all ${
+        speaking
+          ? 'bg-indigo-50 border-indigo-200 text-indigo-600'
+          : 'bg-white border-slate-200 text-slate-400 hover:text-indigo-500 hover:border-indigo-200 hover:bg-indigo-50'
+      }`}
+    >
+      {speaking ? (
+        <>
+          {/* Sound wave animation */}
+          <span className="flex items-end gap-[2px] h-3">
+            <span className="w-[2px] bg-indigo-500 rounded-full animate-[micBar_0.6s_ease-in-out_infinite_0ms]"   style={{height:'40%'}} />
+            <span className="w-[2px] bg-indigo-500 rounded-full animate-[micBar_0.6s_ease-in-out_infinite_150ms]" style={{height:'100%'}} />
+            <span className="w-[2px] bg-indigo-500 rounded-full animate-[micBar_0.6s_ease-in-out_infinite_300ms]" style={{height:'60%'}} />
+          </span>
+          Stop
+        </>
+      ) : (
+        <>
+          <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
+              d="M15.536 8.464a5 5 0 010 7.072M12 6v12m0 0a3 3 0 01-3-3V9a3 3 0 013-3m0 12a3 3 0 003-3V9a3 3 0 00-3-3M8.464 8.464a5 5 0 000 7.072" />
+          </svg>
+          Read aloud
+        </>
+      )}
+    </button>
+  );
+}
+
+/* ------------------------------------------------------------------ */
 /* Decision badge                                                       */
 /* ------------------------------------------------------------------ */
 function DecisionBadge({ decision, reasoning }) {
@@ -73,10 +132,10 @@ function DecisionBadge({ decision, reasoning }) {
   const isError  = decision === 'Error';
 
   const cfg = approved
-    ? { bg: 'bg-emerald-50', border: 'border-emerald-200', text: 'text-emerald-700', dot: 'bg-emerald-400', icon: '✓' }
+    ? { bg: 'bg-emerald-50', border: 'border-emerald-200', text: 'text-emerald-700', dot: 'bg-emerald-400' }
     : isError
-      ? { bg: 'bg-red-50', border: 'border-red-200', text: 'text-red-600', dot: 'bg-red-400', icon: '!' }
-      : { bg: 'bg-amber-50', border: 'border-amber-200', text: 'text-amber-700', dot: 'bg-amber-400', icon: '×' };
+      ? { bg: 'bg-red-50', border: 'border-red-200', text: 'text-red-600', dot: 'bg-red-400' }
+      : { bg: 'bg-amber-50', border: 'border-amber-200', text: 'text-amber-700', dot: 'bg-amber-400' };
 
   return (
     <div className={`mt-0.5 px-3 py-2.5 rounded-xl text-xs border ${cfg.bg} ${cfg.border} ${cfg.text}`}>
@@ -102,7 +161,7 @@ function DecisionBadge({ decision, reasoning }) {
 /* Reasoning steps accordion                                            */
 /* ------------------------------------------------------------------ */
 function ReasoningSteps({ steps }) {
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
 
   return (
     <div className="mt-0.5 w-full">
@@ -112,10 +171,7 @@ function ReasoningSteps({ steps }) {
         className="flex items-center gap-1.5 text-[10px] text-slate-400 hover:text-indigo-500 transition-colors group"
       >
         <div className={`w-4 h-4 rounded border flex items-center justify-center transition-all bg-white ${open ? 'border-indigo-300 text-indigo-500' : 'border-slate-200 text-slate-400'}`}>
-          <svg
-            className={`w-2.5 h-2.5 transition-transform ${open ? 'rotate-90' : ''}`}
-            fill="none" stroke="currentColor" viewBox="0 0 24 24"
-          >
+          <svg className={`w-2.5 h-2.5 transition-transform ${open ? 'rotate-90' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
           </svg>
         </div>
@@ -131,7 +187,7 @@ function ReasoningSteps({ steps }) {
                 <span className="text-slate-700 font-medium capitalize block">
                   {step.step_name?.replace(/_/g, ' ')}
                 </span>
-                <p className="text-slate-400 leading-snug mt-0.5 truncate">{step.details}</p>
+                <p className="text-slate-400 leading-snug mt-0.5 break-words">{step.details}</p>
               </div>
             </div>
           ))}
@@ -147,7 +203,5 @@ function StatusDot({ status }) {
     error:    'bg-red-400',
     fallback: 'bg-amber-400',
   };
-  return (
-    <span className={`mt-1 flex-shrink-0 w-1.5 h-1.5 rounded-full ${map[status] ?? 'bg-slate-300'}`} />
-  );
+  return <span className={`mt-1 flex-shrink-0 w-1.5 h-1.5 rounded-full ${map[status] ?? 'bg-slate-300'}`} />;
 }

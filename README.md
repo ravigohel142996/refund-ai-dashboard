@@ -14,6 +14,8 @@ An enterprise-grade, deterministic AI Customer Support Agent that evaluates e-co
 | 🤖 **LangGraph Agent** | 4-node state graph: Customer Lookup → Order Lookup → Policy Lookup → Refund Validation → Summary |
 | 🔒 **Deterministic Decisions** | Refund approval is 100% rule-based (never hallucinated by LLM) |
 | 💬 **Customer Chat UI** | Mobile-responsive chat portal with quick-reply chips |
+| 🎤 **Voice Input (STT)** | Microphone button using Web Speech Recognition — speak your refund request |
+| 🔊 **Voice Output (TTS)** | AI responses read aloud via Web Speech Synthesis with animated waveform |
 | 📊 **Real-time Admin Dashboard** | Live WebSocket feed, execution trace, approval stats |
 | 🔐 **Admin Authentication** | Login-protected admin panel (session-based) |
 | 📱 **Fully Mobile Responsive** | Works on phone, tablet and desktop |
