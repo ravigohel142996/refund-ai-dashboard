@@ -97,7 +97,7 @@ export default function CustomerPortal() {
   }[backendStatus];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-indigo-50/30 flex flex-col items-center justify-center p-4 relative overflow-hidden">
+    <div className="min-h-screen min-h-[100dvh] bg-gradient-to-br from-slate-50 via-white to-indigo-50/30 flex flex-col items-center justify-center p-3 sm:p-4 relative overflow-hidden">
 
       {/* ── Soft background blobs ── */}
       <div className="pointer-events-none fixed inset-0 overflow-hidden">
@@ -107,9 +107,9 @@ export default function CustomerPortal() {
       </div>
 
       {/* ── Admin shortcut ── */}
-      <div className="relative z-10 w-full max-w-2xl flex justify-end mb-3">
+      <div className="relative z-10 w-full max-w-2xl flex justify-end mb-2 sm:mb-3">
         <Link
-          to="/admin"
+          to="/admin/login"
           id="nav-admin-panel"
           className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/80 text-[11px] font-medium text-slate-500 hover:text-indigo-600 border border-slate-200 hover:border-indigo-200 transition-all shadow-sm"
         >
@@ -121,7 +121,7 @@ export default function CustomerPortal() {
       </div>
 
       {/* ── Main chat card ── */}
-      <div className="relative w-full max-w-2xl flex flex-col z-10 card overflow-hidden" style={{ height: 'min(88vh, 720px)' }}>
+      <div className="relative w-full max-w-2xl flex flex-col z-10 card overflow-hidden" style={{ height: 'min(88dvh, 720px)' }}>
 
         {/* ── Header ── */}
         <div className="px-6 py-4 flex items-center justify-between border-b border-slate-100 bg-white">

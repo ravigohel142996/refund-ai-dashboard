@@ -20,6 +20,8 @@
     -moz-osx-font-smoothing: grayscale;
     background: #f8f9fc;
     color: #0f172a;
+    /* Prevent mobile bounce scroll */
+    overscroll-behavior: none;
   }
 
   code, pre, .mono {

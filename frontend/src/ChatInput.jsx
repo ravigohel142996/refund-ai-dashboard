@@ -1,10 +1,10 @@
 import { useState } from 'react';
 
 const QUICK_MESSAGES = [
-  { label: '💸 Request Refund', text: 'I want a refund for my order' },
-  { label: '📦 Damaged Item',   text: 'My product arrived damaged' },
-  { label: '↩️ Return Item',    text: "I'd like to return this item" },
-  { label: '❓ Check Eligibility', text: 'Can I get a refund?' },
+  { label: '💸 Refund',         text: 'I want a refund for my order' },
+  { label: '📦 Damaged',        text: 'My product arrived damaged' },
+  { label: '↩️ Return',         text: "I'd like to return this item" },
+  { label: '❓ Eligible?',      text: 'Can I get a refund?' },
 ];
 
 /**
@@ -31,7 +31,7 @@ export default function ChatInput({ onSend, isLoading }) {
   }
 
   return (
-    <div className="px-4 pt-3 pb-4 space-y-3 bg-white">
+    <div className="px-3 sm:px-4 pt-3 pb-3 sm:pb-4 space-y-2.5 sm:space-y-3 bg-white">
 
       {/* ── Quick-reply chips ── */}
       <div className="flex flex-wrap gap-1.5">
