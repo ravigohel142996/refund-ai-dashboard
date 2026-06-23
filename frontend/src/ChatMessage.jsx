@@ -13,12 +13,12 @@ export default function ChatMessage({ message }) {
 
       {/* ── Avatar ── */}
       <div className={`
-        flex-shrink-0 w-8 h-8 rounded-xl flex items-center justify-center text-[10px] font-bold shadow-lg
+        flex-shrink-0 w-8 h-8 rounded-xl flex items-center justify-center shadow-sm
         ${isUser
-          ? 'bg-gradient-to-br from-blue-500 to-violet-600 text-white shadow-blue-900/40'
+          ? 'bg-gradient-to-br from-indigo-500 to-violet-600 text-white'
           : isError
-            ? 'bg-red-500/15 text-red-400 border border-red-500/25'
-            : 'bg-gradient-to-br from-indigo-500 to-violet-700 text-white shadow-violet-900/40'}
+            ? 'bg-red-100 text-red-500 border border-red-200'
+            : 'bg-gradient-to-br from-indigo-500 to-violet-600 text-white'}
       `}>
         {isUser ? (
           <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
@@ -41,10 +41,10 @@ export default function ChatMessage({ message }) {
         <div className={`
           px-4 py-3 rounded-2xl text-sm leading-relaxed
           ${isUser
-            ? 'bg-gradient-to-br from-blue-600 to-violet-700 text-white rounded-br-sm shadow-lg shadow-blue-900/30'
+            ? 'bg-gradient-to-br from-indigo-500 to-violet-600 text-white rounded-br-sm shadow-md shadow-indigo-100'
             : isError
-              ? 'bg-red-900/20 text-red-300 border border-red-500/20 rounded-bl-sm'
-              : 'glass text-slate-200 rounded-bl-sm'}
+              ? 'bg-red-50 text-red-700 border border-red-200 rounded-bl-sm'
+              : 'bg-white text-slate-700 border border-slate-200 rounded-bl-sm shadow-sm'}
         `}>
           {message.content}
         </div>
@@ -59,7 +59,7 @@ export default function ChatMessage({ message }) {
           <ReasoningSteps steps={message.steps} />
         )}
 
-        <span className="text-[10px] text-slate-600 px-1">{message.time}</span>
+        <span className="text-[10px] text-slate-400 px-1">{message.time}</span>
       </div>
     </div>
   );
@@ -72,25 +72,23 @@ function DecisionBadge({ decision, reasoning }) {
   const approved = decision === 'Approved';
   const isError  = decision === 'Error';
 
-  const cls = approved
-    ? 'bg-emerald-500/10 text-emerald-300 border-emerald-500/25'
+  const cfg = approved
+    ? { bg: 'bg-emerald-50', border: 'border-emerald-200', text: 'text-emerald-700', dot: 'bg-emerald-400', icon: '✓' }
     : isError
-      ? 'bg-red-500/10 text-red-300 border-red-500/25'
-      : 'bg-amber-500/10 text-amber-300 border-amber-500/25';
-
-  const dot = approved ? 'bg-emerald-400' : isError ? 'bg-red-400' : 'bg-amber-400';
+      ? { bg: 'bg-red-50', border: 'border-red-200', text: 'text-red-600', dot: 'bg-red-400', icon: '!' }
+      : { bg: 'bg-amber-50', border: 'border-amber-200', text: 'text-amber-700', dot: 'bg-amber-400', icon: '×' };
 
   return (
-    <div className={`mt-0.5 px-3 py-2.5 rounded-xl text-xs border ${cls}`}>
+    <div className={`mt-0.5 px-3 py-2.5 rounded-xl text-xs border ${cfg.bg} ${cfg.border} ${cfg.text}`}>
       <div className="flex items-center gap-1.5 font-semibold mb-1">
-        <span className={`w-2 h-2 rounded-full ${dot} ${approved ? 'animate-pulse' : ''}`} />
+        <span className={`w-2 h-2 rounded-full ${cfg.dot} ${approved ? 'animate-pulse' : ''}`} />
         Decision: {decision}
       </div>
       {reasoning && reasoning.length > 0 && (
         <ul className="space-y-0.5 opacity-80 text-[11px] pl-3.5">
           {reasoning.map((r, i) => (
             <li key={i} className="flex gap-1.5">
-              <span className="text-slate-500 flex-shrink-0">›</span>
+              <span className="text-slate-400 flex-shrink-0">›</span>
               <span>{r}</span>
             </li>
           ))}
@@ -111,9 +109,9 @@ function ReasoningSteps({ steps }) {
       <button
         id="toggle-reasoning-steps"
         onClick={() => setOpen(o => !o)}
-        className="flex items-center gap-1.5 text-[10px] text-slate-500 hover:text-indigo-300 transition-colors group"
+        className="flex items-center gap-1.5 text-[10px] text-slate-400 hover:text-indigo-500 transition-colors group"
       >
-        <div className={`w-4 h-4 rounded glass border border-white/8 flex items-center justify-center transition-all ${open ? 'border-indigo-500/30' : ''}`}>
+        <div className={`w-4 h-4 rounded border flex items-center justify-center transition-all bg-white ${open ? 'border-indigo-300 text-indigo-500' : 'border-slate-200 text-slate-400'}`}>
           <svg
             className={`w-2.5 h-2.5 transition-transform ${open ? 'rotate-90' : ''}`}
             fill="none" stroke="currentColor" viewBox="0 0 24 24"
@@ -127,13 +125,13 @@ function ReasoningSteps({ steps }) {
       {open && (
         <div className="mt-2 space-y-1.5 expand-enter">
           {steps.map((step, i) => (
-            <div key={i} className="flex items-start gap-2 px-3 py-2 rounded-xl glass border border-white/5 text-[11px]">
+            <div key={i} className="flex items-start gap-2 px-3 py-2 rounded-xl bg-white border border-slate-200 shadow-sm text-[11px]">
               <StatusDot status={step.status} />
               <div className="min-w-0">
-                <span className="text-slate-300 font-medium capitalize block">
+                <span className="text-slate-700 font-medium capitalize block">
                   {step.step_name?.replace(/_/g, ' ')}
                 </span>
-                <p className="text-slate-500 leading-snug mt-0.5 truncate">{step.details}</p>
+                <p className="text-slate-400 leading-snug mt-0.5 truncate">{step.details}</p>
               </div>
             </div>
           ))}
@@ -150,6 +148,6 @@ function StatusDot({ status }) {
     fallback: 'bg-amber-400',
   };
   return (
-    <span className={`mt-1 flex-shrink-0 w-1.5 h-1.5 rounded-full ${map[status] ?? 'bg-slate-400'}`} />
+    <span className={`mt-1 flex-shrink-0 w-1.5 h-1.5 rounded-full ${map[status] ?? 'bg-slate-300'}`} />
   );
 }
